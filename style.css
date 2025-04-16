@@ -59,7 +59,7 @@ body {
 
 .content {
   flex-grow: 1;
-  margin-left: 270px;  /* 사이드바와 겹치지 않도록 공간을 만들어줍니다. */
+  margin-left: 270px;  /* 사이드바와 겹치지 않도록 여백 설정 */
   padding: 20px;
   background-color: #ecf0f1;
 }
