@@ -1,80 +1,42 @@
 body {
-  font-family: 'Arial', sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  background-color: #f7f7f7;
+  font-family: 'Segoe UI', sans-serif;
+  margin: 40px auto;
+  max-width: 800px;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f9f9f9;
 }
 
-.container {
-  display: flex;
-  min-height: 100vh;
+h1 {
+  font-size: 2rem;
+  color: #2c3e50;
 }
 
-.sidebar {
-  width: 250px;
-  background-color: #2C3E50;
-  color: white;
-  padding: 20px;
-  position: sticky;
-  top: 0;
+h2 {
+  margin-top: 40px;
+  color: #34495e;
+  border-bottom: 2px solid #ddd;
+  padding-bottom: 5px;
 }
 
-.sidebar h1 {
-  font-size: 1.8em;
-  margin-bottom: 20px;
+h3 {
+  margin-top: 20px;
+  color: #2d3436;
 }
 
-.sidebar p {
-  font-size: 1.1em;
-}
-
-.sidebar hr {
-  margin: 20px 0;
-  border: 0;
-  border-top: 1px solid #34495E;
-}
-
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  margin: 15px 0;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  font-size: 1.1em;
-}
-
-.sidebar ul li a:hover {
-  color: #f39c12;
-}
-
-.content {
-  flex-grow: 1;
-  padding: 20px;
-  background-color: #ecf0f1;
-}
-
-.content h2 {
-  font-size: 2em;
-  margin-bottom: 10px;
-  color: #2C3E50;
-}
-
-.content p, .content ul {
-  font-size: 1.1em;
-  margin: 10px 0;
-}
-
-.content a {
+a {
   color: #2980b9;
+  text-decoration: none;
 }
 
-.content a:hover {
+a:hover {
   text-decoration: underline;
+}
+
+ul {
+  margin-left: 20px;
+}
+
+section {
+  margin-top: 30px;
 }
