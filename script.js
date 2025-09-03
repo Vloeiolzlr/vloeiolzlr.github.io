@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- Typing Animation ---
     const typingText = document.getElementById('typing-text');
-    const textToType = "Spring Backend Developer";
+    const textToType = "Backend Developer";
     let index = 0;
     function type() {
         if (typingText && index < textToType.length) {
