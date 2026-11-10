@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>김동민 포트폴리오</title>
+<meta name="description" content="백엔드 개발자 김동민의 포트폴리오. e스포츠 매칭 서비스 LFT ALL을 출시해 운영하고 있습니다.">
+<meta property="og:title" content="김동민 · Backend Developer">
+<meta property="og:description" content="e스포츠 매칭 서비스 LFT ALL을 출시해 운영하고 있는 백엔드 개발자입니다.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#141312">
+<link rel="preload" href="assets/fonts/Pretendard-Regular.subset.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<script>document.documentElement.classList.add("anim")</script>
+<style>
+/* 레이아웃: 가운데 둥근 메뉴, 왼쪽 따라 내려오는 크림색 프로필 카드, 오른쪽 어두운 본문.
+   모션: adinaa.me 방식 — 화면에 들어올 때 짧게 올라오는 리빌, 카드 호버 시 확대+블러+어두운 막+글 상승. */
+@font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Regular.subset.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
+@font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.subset.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
+@font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-SemiBold.subset.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
+@font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Bold.subset.woff2") format("woff2"); font-weight: 700; font-style: normal; font-display: swap; }
+:root {
+  --bg: #141312;
+  --surface: #1f1d1b;
+  --surface-2: #262320;
+  --line: #2c2926;
+  --line-2: #3a3733;
+  --ink: #f2efea;
+  --muted: #b5afa7;
+  --dim: #9a948c;
+  --ghost: #77716a;
+  --paper: #f2efea;
+  --paper-ink: #141312;
+  --paper-muted: #4a4641;
+  --orange: #f2683c;
+  --lime: #c6f24e;
+  --cyan: #7fe3f5;
+  --violet: #b9aeff;
+  --font-display: "Archivo", "Pretendard", system-ui, sans-serif;
+  --font-body: "Pretendard", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  /* motion tokens */
+  --ease: cubic-bezier(.22, 1, .36, 1);
+  --rise: 56px;
+  --reveal: 1.5s;
+  --ease-view: cubic-bezier(.25, .7, .3, 1);
+  --hover: 1.5s;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--font-body); font-size: 16px; line-height: 1.7;
+  word-break: keep-all; overflow-wrap: anywhere; -webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+a:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 8px; }
+h1, h2, h3, h4, h5 { margin: 0; text-wrap: balance; }
+p { margin: 0; }
+section[id], #top { scroll-margin-top: 88px; }
+
+.page {
+  max-width: 1240px; margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 24px 64px;
+}
+@media (min-width: 720px) { .page { padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px)); } }
+
+/* ---------- pill nav ---------- */
+.nav { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); z-index: 20; display: flex; justify-content: center; margin-bottom: 48px; pointer-events: none; }
+.nav-pill { pointer-events: auto; display: flex; gap: 4px; padding: 6px; background: color-mix(in srgb, var(--surface) 92%, transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid var(--line); border-radius: 999px; }
+.nav-pill a { width: 44px; height: 44px; border-radius: 999px; display: grid; place-items: center; color: var(--muted); transition: background .3s, color .3s; }
+.nav-pill a:hover { background: var(--surface-2); color: var(--ink); }
+.nav-pill svg { width: 18px; height: 18px; }
+
+.layout { display: grid; gap: 48px; align-items: start; }
+@media (min-width: 980px) { .layout { grid-template-columns: 330px minmax(0, 1fr); gap: 64px; } }
+
+/* ---------- profile card ---------- */
+.profile { background: var(--paper); color: var(--paper-ink); border-radius: 24px; padding: 28px; display: grid; gap: 18px; justify-items: center; text-align: center; }
+@media (min-width: 980px) { .profile { position: sticky; top: 96px; } }
+@media (max-width: 979px) { .profile { max-width: 420px; width: 100%; margin: 0 auto; } }
+.photo { width: 100%; aspect-ratio: 1 / 1.05; border-radius: 18px; background: var(--orange); display: grid; place-items: center; position: relative; overflow: hidden; }
+.photo > span { font-family: var(--font-display); font-weight: 900; font-size: 92px; letter-spacing: -0.04em; color: var(--paper-ink); line-height: 1; }
+.photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.photo small { position: absolute; z-index: 1; left: 14px; bottom: 14px; font-family: var(--font-mono); font-size: 12px; font-weight: 600; background: var(--paper); padding: 5px 10px; border-radius: 999px; }
+@media (max-width: 979px) { .photo { aspect-ratio: 16 / 9; } }
+.profile h1 { font-size: 34px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.profile .job { font-family: var(--font-mono); font-size: 13px; font-weight: 500; color: var(--paper-muted); margin-top: 4px; }
+.profile .bio { font-size: 15px; line-height: 1.6; color: #3b3834; }
+.icons { display: flex; gap: 8px; }
+.icons a { width: 44px; height: 44px; border-radius: 999px; border: 1px solid #d6d1c9; display: grid; place-items: center; transition: background .3s; }
+.icons a:hover { background: #e4dfd7; }
+.icons svg { width: 18px; height: 18px; }
+.cta { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; min-height: 48px; border-radius: 999px; background: var(--paper-ink); color: var(--paper); font-size: 14px; font-weight: 600; }
+.cta i { width: 8px; height: 8px; border-radius: 50%; background: var(--lime); }
+
+/* ---------- main column ---------- */
+main { display: grid; gap: 120px; min-width: 0; }
+@media (max-width: 720px) { main { gap: 88px; } }
+.big { font-family: var(--font-display); font-weight: 900; font-size: clamp(48px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.02em; text-transform: uppercase; }
+.big .ln { display: block; overflow: hidden; padding-bottom: .06em; margin-bottom: -.06em; }
+.big .ln > span { display: block; }
+.big .g { color: var(--ghost); }
+.sec { display: grid; gap: 36px; }
+
+/* ---------- hero ---------- */
+.hero { display: grid; gap: 32px; }
+.hero .big { font-size: clamp(56px, 8.5vw, 112px); }
+.hero .ch { display: inline-block; transform-origin: 50% 100%; }
+.lead { max-width: 580px; font-size: 18px; line-height: 1.75; color: var(--muted); }
+.stats { display: flex; flex-wrap: wrap; gap: 28px 44px; }
+.stat { display: grid; gap: 4px; }
+.stat b { font-family: var(--font-display); font-weight: 800; font-size: 56px; line-height: 1; font-variant-numeric: tabular-nums; }
+.stat span { font-family: var(--font-mono); font-size: 12px; color: var(--dim); text-transform: uppercase; }
+.stats-note { font-family: var(--font-mono); font-size: 12px; color: var(--dim); margin-top: -16px; }
+.bento { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+.tile { display: flex; flex-direction: column; justify-content: space-between; gap: 40px; min-height: 220px; padding: 28px; border-radius: 22px; color: var(--paper-ink); transition: filter .4s; }
+.tile:hover { filter: brightness(1.05); }
+.tile.o { background: var(--orange); }
+.tile.l { background: var(--lime); }
+.tile svg { width: 30px; height: 30px; }
+.tile-foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; }
+.tile-foot b { font-family: var(--font-display); font-weight: 800; font-size: 24px; line-height: 1.15; text-transform: uppercase; }
+.tile-foot span { font-family: var(--font-mono); font-size: 12px; font-weight: 600; text-align: right; line-height: 1.5; }
+
+/* ---------- tech marquee ---------- */
+.marquee { overflow: hidden; border-block: 1px solid var(--line); padding-block: 18px; mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.marquee-track { display: flex; width: max-content; gap: 40px; animation: marquee 32s linear infinite; }
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee span { font-family: var(--font-display); font-weight: 900; font-size: clamp(22px, 3vw, 34px); text-transform: uppercase; letter-spacing: -0.01em; white-space: nowrap; color: var(--ghost); display: inline-flex; align-items: center; gap: 40px; }
+.marquee span::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); }
+.marquee span:nth-child(3n+2)::after { background: var(--lime); }
+.marquee span:nth-child(3n)::after { background: var(--cyan); }
+
+/* ---------- project gallery ---------- */
+.filters { display: flex; gap: 22px; padding-bottom: 14px; border-bottom: 1px solid var(--line); margin-top: -12px; }
+.filters button { all: unset; cursor: pointer; font-family: var(--font-mono); font-size: 13px; color: var(--dim); padding: 6px 0; min-height: 32px; display: inline-flex; align-items: center; transition: color .3s; }
+.filters button:hover { color: var(--ink); }
+.filters button.on { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+.filters button:focus-visible { outline: 2px solid var(--lime); outline-offset: 3px; border-radius: 4px; }
+.gallery { display: grid; gap: 36px 20px; }
+@media (min-width: 640px) { .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); } .shot.wide { grid-column: 1 / -1; } }
+.shot { position: relative; display: grid; gap: 14px; align-content: start; }
+.shot[hidden] { display: none; }
+.frame { position: relative; aspect-ratio: 16 / 10; border-radius: 20px; overflow: hidden; isolation: isolate; }
+.shot.wide .frame { aspect-ratio: 16 / 9; }
+.screen { position: absolute; inset: 0; background: var(--tone); border: 1px solid var(--line); border-radius: 20px; overflow: hidden;
+  transition: transform var(--hover) var(--ease), filter var(--hover) var(--ease); will-change: transform, filter; }
+.screen img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top center; }
+.ph { position: absolute; inset: 7% 7% -6%; border-radius: 12px; background: color-mix(in srgb, var(--tone) 60%, #000); border: 1px solid color-mix(in srgb, var(--fg) 25%, transparent); box-shadow: 0 30px 60px rgba(0,0,0,.35); display: grid; place-items: center; }
+.ph i { position: absolute; top: 14px; width: 9px; height: 9px; border-radius: 50%; background: color-mix(in srgb, var(--fg) 45%, transparent); }
+.ph i:nth-child(1) { left: 16px; } .ph i:nth-child(2) { left: 32px; } .ph i:nth-child(3) { left: 48px; }
+.ph span { font-family: var(--font-display); font-weight: 900; font-size: clamp(34px, 7vw, 84px); letter-spacing: -0.03em; color: var(--fg); text-transform: uppercase; }
+.shade { position: absolute; inset: 0; z-index: 1; border-radius: 20px; background: rgba(0,0,0,0); transition: background-color var(--hover) var(--ease); pointer-events: none; }
+.cover { position: absolute; inset: 0; z-index: 2; border-radius: 20px; }
+.overlay { position: absolute; inset: 0; z-index: 3; pointer-events: none; display: grid; grid-template-rows: 1fr auto; padding: clamp(16px, 3vw, 36px); color: #fff; }
+.tagline { align-self: center; justify-self: center; text-align: center; font-size: clamp(16px, 2.2vw, 28px); font-weight: 500; max-width: 26ch; line-height: 1.4; text-shadow: 0 3px 6px rgba(0,0,0,.2); }
+.foot { display: grid; gap: 10px; justify-items: start; }
+.name { font-family: var(--font-display); font-weight: 800; font-size: clamp(30px, 5vw, 60px); line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; }
+.desc { font-size: clamp(15px, 1.6vw, 19px); color: rgba(255,255,255,.85); margin-top: -2px; }
+.badges { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+.badge { font-family: var(--font-display); font-size: 12px; font-weight: 800; letter-spacing: .02em; padding: 5px 11px; border-radius: 6px; background: rgba(255,255,255,.18); color: #fff; }
+.badge.ghost { background: transparent; border: 1px solid rgba(255,255,255,.35); }
+.ico { pointer-events: auto; width: 32px; height: 32px; display: grid; place-items: center; color: #fff; border-radius: 8px; transition: background .3s; }
+.ico:hover { background: rgba(255,255,255,.14); }
+.ico svg { width: 18px; height: 18px; }
+.below { display: grid; gap: 2px; padding: 0 4px; }
+.below h4 { font-size: 22px; font-weight: 700; line-height: 1.3; }
+.below p { color: var(--muted); font-size: 15px; }
+.hint { font-size: 13px; color: var(--dim); }
+
+/* LFT ALL main card: name, line, badges always visible bottom-left */
+.shot.main .shade { background: linear-gradient(180deg, transparent 40%, rgba(8,8,8,.75)); }
+.shot.main .overlay { grid-template-rows: 1fr; align-items: end; }
+.shot.main .ph { place-items: start end; padding: 10% 7%; }
+.shot.main .ph span { font-size: clamp(28px, 5vw, 64px); opacity: .55; }
+
+/* hover (adinaa): image slowly zooms + blurs, dark veil, text rises in */
+.shot:not(.main) .overlay > * { opacity: 0; transform: translateY(16px); transition: opacity 1.2s var(--ease), transform var(--hover) var(--ease); }
+@media (hover: hover) {
+  .shot:hover .screen, .shot:focus-within .screen { transform: scale(1.05); filter: blur(12px); }
+  .shot:not(.main):hover .shade, .shot:not(.main):focus-within .shade { background: rgba(0,0,0,.6); }
+  .shot.main:hover .shade, .shot.main:focus-within .shade { background-color: rgba(0,0,0,.35); }
+  .shot:hover .overlay > *, .shot:focus-within .overlay > * { opacity: 1; transform: none; }
+  .shot:not(.main):hover .overlay .foot, .shot:not(.main):focus-within .overlay .foot { transition-delay: .15s; }
+}
+/* LFT ALL: name stays, the line and badges rise in on hover like the other cards */
+.shot.main .foot > .desc, .shot.main .foot > .badges { opacity: 0; transform: translateY(16px); transition: opacity 1.2s var(--ease), transform var(--hover) var(--ease); }
+.shot.main .foot > .badges { transition-delay: 0s; }
+@media (hover: hover) {
+  .shot.main:hover .foot > .desc, .shot.main:focus-within .foot > .desc { opacity: 1; transform: none; transition-delay: .1s; }
+  .shot.main:hover .foot > .badges, .shot.main:focus-within .foot > .badges { opacity: 1; transform: none; transition-delay: .25s; }
+}
+@media (hover: none) {
+  .shot.main .foot > .desc, .shot.main .foot > .badges { opacity: 1; transform: none; }
+}
+/* touch screens: no hover, so show the text over a softened shot */
+@media (hover: none) {
+  .shot:not(.main) .screen { filter: blur(8px); transform: scale(1.05); }
+  .shot:not(.main) .shade { background: rgba(0,0,0,.55); }
+  .shot .overlay > * { opacity: 1; transform: none; }
+}
+
+/* buttons (contact) */
+.btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.btn { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 20px; border-radius: 999px; border: 1px solid var(--line-2); font-size: 14px; font-weight: 600; transition: border-color .3s, background .3s; }
+.btn:hover { border-color: var(--ink); }
+.btn.solid { background: var(--ink); color: var(--paper-ink); border-color: var(--ink); }
+
+/* ---------- education & awards ---------- */
+.rows { display: grid; border-top: 1px solid var(--line); }
+.row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 32px; padding: 24px 0; border-bottom: 1px solid var(--line); }
+.row > div { flex: 1 1 300px; min-width: 0; display: grid; gap: 4px; }
+.row b { font-size: 20px; font-weight: 700; line-height: 1.35; }
+.row .r { font-size: 14px; font-weight: 500; color: #c9c3ba; }
+.row time { font-family: var(--font-mono); font-size: 13px; font-weight: 600; white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* ---------- stack ---------- */
+.skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+.skill { display: flex; align-items: center; gap: 12px; padding: 14px; border-radius: 14px; background: var(--surface); border: 1px solid var(--line); }
+.skill i { flex: none; width: 36px; height: 36px; border-radius: 10px; display: grid; place-items: center; font-style: normal; font-family: var(--font-mono); font-size: 12px; font-weight: 600; color: var(--paper-ink); }
+.skill div { display: grid; min-width: 0; line-height: 1.4; }
+.skill b { font-size: 14px; font-weight: 600; }
+.skill span { font-size: 12px; color: var(--dim); }
+.skill i.logo { background: var(--paper); color: var(--paper-ink); font-size: 11px; font-weight: 700; letter-spacing: -0.02em; }
+.skill i.logo img { width: 22px; height: 22px; object-fit: contain; display: block; }
+
+/* hover: background only (no movement) */
+.anim .stagger > .skill { transition-property: opacity, transform, background-color, border-color; }
+.skill { transition: background-color .4s ease, border-color .4s ease; }
+.skill:hover { background-color: var(--surface-2); border-color: var(--line-2); }
+
+/* ---------- contact ---------- */
+.contact { background: var(--paper); color: var(--paper-ink); border-radius: 28px; padding: clamp(28px, 5vw, 48px); display: grid; gap: 24px; }
+.contact .big { font-size: clamp(44px, 6vw, 76px); }
+.contact .big .g { color: #6e6962; }
+.contact p { max-width: 520px; font-size: 17px; color: #3b3834; }
+.contact .mail { font-family: var(--font-mono); font-size: 17px; font-weight: 600; user-select: all; }
+.contact .btn { border-color: var(--paper-ink); color: var(--paper-ink); min-height: 52px; }
+.contact .btn:hover { background: #e4dfd7; }
+.contact .btn.solid { background: var(--paper-ink); color: var(--paper); }
+.contact .btn.solid:hover { background: #2a2826; }
+footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 12px; color: var(--dim); }
+
+/* ================= motion =================
+   .anim is set by the head script; without JS everything is simply visible. */
+@keyframes up { from { opacity: 0; transform: translateY(var(--from, 40px)); } to { opacity: 1; transform: none; } }
+@keyframes drop { from { opacity: 0; transform: translateY(-16px); } to { opacity: 1; transform: none; } }
+@keyframes chUp { from { transform: translateY(110%); } to { transform: none; } }
+@keyframes marquee { to { transform: translateX(-50%); } }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(198,242,78,.55); } 60% { box-shadow: 0 0 0 7px rgba(198,242,78,0); } }
+
+/* 1) page load: menu → profile → BACKEND / DEVELOPER letters → rest of hero */
+.anim .nav-pill { animation: drop .9s var(--ease) both; }
+.anim .profile { animation: up 1.1s var(--ease) .15s both; --from: 40px; }
+.anim .hero .ch { animation: chUp 1s var(--ease) both; animation-delay: calc(.3s + var(--c, 0) * 32ms); }
+.anim .hero .lead { animation: up 1.1s var(--ease) .75s both; --from: 24px; }
+.anim .hero .stats { animation: up 1.1s var(--ease) .85s both; --from: 24px; }
+.anim .hero .stats-note { animation: up 1.1s var(--ease) .9s both; --from: 24px; }
+.cta i { animation: pulse 2s ease-out infinite; }
+
+/* 2) scroll reveal: short, slow rise as the element enters the screen */
+.anim .reveal { opacity: 0; transform: translateY(var(--rise)); transition: opacity var(--reveal) var(--ease-view), transform var(--reveal) var(--ease-view); transition-delay: var(--d, 0s); }
+.anim .reveal.in { opacity: 1; transform: none; }
+.anim .stagger > * { opacity: 0; transform: translateY(var(--rise)); transition-duration: var(--reveal), var(--reveal), .4s, .4s; transition-timing-function: var(--ease-view); transition-delay: calc(var(--i, 0) * 90ms), calc(var(--i, 0) * 90ms), 0s, 0s; }
+.anim .stagger:not(.dec-like) > * { transition-property: opacity, transform; }
+.anim .stagger > .skill { transition-property: opacity, transform, background-color, border-color; }
+.anim .stagger.in > * { opacity: 1; transform: none; }
+/* big titles: each line slides up out of its mask */
+.anim .big.rv .ln > span { transform: translateY(110%); transition: transform 1.4s var(--ease-view); transition-delay: calc(var(--l, 0) * 140ms); }
+.anim .big.rv.in .ln > span { transform: none; }
+/* text under a project card follows the card */
+.anim .shot .below > * { opacity: 0; transform: translateY(24px); transition: opacity var(--reveal) var(--ease-view), transform var(--reveal) var(--ease-view); transition-delay: .25s; }
+.anim .shot .below > p { transition-delay: .35s; }
+.anim .shot.in .below > * { opacity: 1; transform: none; }
+
+/* replay on menu click: reset instantly */
+.replay .reveal, .replay .stagger > *, .replay .big.rv .ln > span, .replay .shot .below > * { transition: none !important; }
+
+/* 모션은 OS의 '애니메이션 효과 끄기' 설정과 상관없이 항상 재생합니다 (adinaa.me와 같은 방식). */
+</style>
+</head>
+<body>
+<div class="page">
+
+  <nav class="nav" aria-label="섹션 이동">
+    <div class="nav-pill">
+      <a href="#top" aria-label="맨 위로" title="맨 위로"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9.5 21v-6h5v6"/></svg></a>
+      <a href="#projects" aria-label="프로젝트" title="프로젝트"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7h7l2 2h9v11H3z"/></svg></a>
+      <a href="#experience" aria-label="학력과 수상" title="학력과 수상"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V4h6v3"/></svg></a>
+      <a href="#stack" aria-label="기술 스택" title="기술 스택"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="2.5"/><path d="M4 5.5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/><path d="M4 11.5v6c0 1.4 3.6 2.5 8 2.5s8-1.1 8-2.5v-6"/></svg></a>
+    </div>
+  </nav>
+
+  <div class="layout" id="top">
+
+    <aside class="profile" aria-label="프로필">
+      <div class="photo">
+        <span aria-hidden="true">DM</span>
+        <img src="assets/profile.jpg" alt="김동민 프로필 사진" onerror="this.remove()">
+        <small>Backend · 2026</small>
+      </div>
+      <div>
+        <h1>김동민</h1>
+        <p class="job">Backend Developer</p>
+      </div>
+      <p class="bio">서비스를 직접 출시하고<br>운영하며 배우는 백엔드 개발자</p>
+      <div class="icons">
+        <a href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a>
+        <a href="https://lftall.com" target="_blank" rel="noopener" aria-label="LFT ALL 사이트"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></a>
+        <a href="mailto:vloeiolzlr@gmail.com" aria-label="이메일 보내기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
+      </div>
+    </aside>
+
+    <main>
+      <section class="hero">
+        <h2 class="big" aria-label="Backend Developer"><span class="ln"><span class="split">Backend</span></span><span class="ln"><span class="split g">Developer</span></span></h2>
+        <p class="lead">e스포츠 매칭 서비스 LFT ALL을 혼자 기획해 출시하고 운영하고 있습니다. 요구사항과 정책을 정하고, AI 코딩 에이전트가 만든 코드를 테스트로 검증해 배포합니다. 장애가 나면 요청이 지나가는 길을 하나씩 따라가 원인을 찾습니다.</p>
+        <div class="stats">
+          <div class="stat"><b data-count="183">183</b><span>REST API</span></div>
+          <div class="stat"><b data-count="64">64</b><span>Merged PR</span></div>
+          <div class="stat"><b data-count="131">131</b><span>통합 테스트</span></div>
+        </div>
+        <p class="stats-note">LFT ALL 백엔드 저장소 기준 · 2026.11</p>
+        <div class="bento stagger">
+          <a class="tile o" href="#projects">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="7" rx="1.5"/><rect x="3" y="14" width="18" height="7" rx="1.5"/><path d="M7 6.5h.01M7 17.5h.01"/></svg>
+            <div class="tile-foot"><b>Server, Data<br>&amp; API</b><span>Spring Boot 4<br>PostgreSQL 18</span></div>
+          </a>
+          <a class="tile l" href="https://lftall.com" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 17 10 11 4 5"/><path d="M12 19h8"/></svg>
+            <div class="tile-foot"><b>Ship &amp;<br>Operate</b><span>Lightsail<br>Caddy</span></div>
+          </a>
+        </div>
+      </section>
+
+      <div class="marquee reveal" aria-hidden="true"><div class="marquee-track"><span>Java</span><span>Spring Boot</span><span>PostgreSQL</span><span>JPA</span><span>Flyway</span><span>PgBouncer</span><span>Testcontainers</span><span>Docker</span><span>AWS</span><span>Caddy</span><span>Cloudflare</span><span>Claude Code</span><span>Java</span><span>Spring Boot</span><span>PostgreSQL</span><span>JPA</span><span>Flyway</span><span>PgBouncer</span><span>Testcontainers</span><span>Docker</span><span>AWS</span><span>Caddy</span><span>Cloudflare</span><span>Claude Code</span></div></div>
+
+      <section class="sec" id="projects">
+        <h2 class="big rv"><span class="ln"><span>Selected</span></span><span class="ln"><span class="g">Projects</span></span></h2>
+        <div class="filters reveal" role="group" aria-label="프로젝트 분류">
+          <button type="button" class="on" data-f="all" aria-pressed="true">ALL</button>
+          <button type="button" data-f="live" aria-pressed="false">[Live]</button>
+          <button type="button" data-f="team" aria-pressed="false">[Team]</button>
+        </div>
+        <div class="gallery">
+
+          <article class="shot wide main reveal" data-tags="live">
+            <div class="frame">
+              <div class="screen" style="--tone:#0e2a33;--fg:#7fe3f5">
+                <div class="ph" aria-hidden="true"><i></i><i></i><i></i><span>LFT ALL</span></div>
+                <img src="assets/lftall.png" alt="" loading="lazy" onerror="this.remove()">
+              </div>
+              <div class="shade"></div>
+              <a class="cover" href="https://lftall.com" target="_blank" rel="noopener" aria-label="LFT ALL 사이트 열기"></a>
+              <div class="overlay">
+                <div class="foot">
+                  <h3 class="name">LFT ALL</h3>
+                  <p class="desc">e스포츠 선수·구단·클랜을 이어 주는 매칭 서비스</p>
+                  <div class="badges"><span class="badge">WEBSITE</span><span class="badge ghost">운영 중</span><a class="ico" href="https://github.com/Vloeiolzlr/lftall-api" target="_blank" rel="noopener" aria-label="LFT ALL GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a><a class="ico" href="https://lftall.com" target="_blank" rel="noopener" aria-label="lftall.com 새 창으로 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 10 14"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="shot wide reveal" data-tags="live team">
+            <div class="frame">
+              <div class="screen" style="--tone:#2b1a12;--fg:#f2683c">
+                <div class="ph" aria-hidden="true"><i></i><i></i><i></i><span>SGEA</span></div>
+                <img src="assets/sgea.png" alt="" loading="lazy" onerror="this.remove()">
+              </div>
+              <div class="shade"></div>
+              <a class="cover" href="https://sgea.kr" target="_blank" rel="noopener" aria-label="SGEA 사이트 열기"></a>
+              <div class="overlay">
+                <p class="tagline">강사·교육 콘텐츠를 소개하는 e스포츠 교육 플랫폼</p>
+                <div class="foot">
+                  <div class="badges"><span class="badge">WEBSITE</span><span class="badge ghost">TEAM</span><a class="ico" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="SGEA GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a><a class="ico" href="https://sgea.kr" target="_blank" rel="noopener" aria-label="sgea.kr 새 창으로 열기"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6"/><path d="M20 4 10 14"/><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"/></svg></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="below"><h4>SGEA</h4><p>e스포츠 강사와 교육 과정을 소개하는 플랫폼</p></div>
+          </article>
+
+          <article class="shot reveal" data-tags="team">
+            <div class="frame">
+              <div class="screen" style="--tone:#1c1a2e;--fg:#b9aeff">
+                <div class="ph" aria-hidden="true"><i></i><i></i><i></i><span>달토끼</span></div>
+                <img src="assets/moonrabbit.png" alt="" loading="lazy" onerror="this.remove()">
+              </div>
+              <div class="shade"></div>
+              <a class="cover" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="달토끼 GitHub 열기"></a>
+              <div class="overlay">
+                <p class="tagline">고민 상담 커뮤니티</p>
+                <div class="foot">
+                  <div class="badges"><span class="badge">졸업작품</span><a class="ico" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="달토끼 GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="below"><h4>달토끼</h4><p>고민을 올리고 답변을 받는 상담 커뮤니티</p></div>
+          </article>
+
+          <article class="shot reveal" data-tags="team">
+            <div class="frame">
+              <div class="screen" style="--tone:#1e2a12;--fg:#c6f24e">
+                <div class="ph" aria-hidden="true"><i></i><i></i><i></i><span>책이랑</span></div>
+                <img src="assets/chaekirang.png" alt="" loading="lazy" onerror="this.remove()">
+              </div>
+              <div class="shade"></div>
+              <a class="cover" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="책이랑 GitHub 열기"></a>
+              <div class="overlay">
+                <p class="tagline">독서 토론 플랫폼</p>
+                <div class="foot">
+                  <div class="badges"><span class="badge">TEAM</span><a class="ico" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="책이랑 GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div>
+                </div>
+              </div>
+            </div>
+            <div class="below"><h4>책이랑</h4><p>실시간 채팅으로 책을 함께 이야기하는 독서 토론 플랫폼</p></div>
+          </article>
+
+        </div>
+        <p class="hint reveal">카드를 누르면 실제 사이트나 저장소로 이동합니다.</p>
+      </section>
+
+      <section class="sec" id="experience">
+        <h2 class="big rv"><span class="ln"><span>Education</span></span><span class="ln"><span class="g">&amp; Awards</span></span></h2>
+        <div class="rows stagger">
+          <div class="row"><div><b>동양미래대학교</b><span class="r">컴퓨터소프트웨어공학과 · 전문학사</span></div><time>2023.03 – 2026.02</time></div>
+          <div class="row"><div><b>교내 스마트 SW 개발 경진대회 우수상</b><span class="r">졸업작품 달토끼</span></div><time>2025</time></div>
+          <div class="row"><div><b>AWS Certified Cloud Practitioner</b><span class="r">AWS 자격증</span></div><time>2025</time></div>
+          <div class="row"><div><b>동아리 다솜(DASOM)</b><span class="r">팀 서비스 기획에서 백엔드 기획 담당</span></div><time>2025.05</time></div>
+          <div class="row"><div><b>성적 우수 장학금 3회</b><span class="r">동양미래대학교</span></div><time>2023 – 2025</time></div>
+        </div>
+      </section>
+
+      <section class="sec" id="stack">
+        <h2 class="big rv"><span class="ln"><span>Tech</span></span><span class="ln"><span class="g">Stack</span></span></h2>
+        <div class="skills stagger">
+          <div class="skill"><i class="logo"><img src="assets/icons/java.svg" alt="" width="22" height="22"></i><div><b>Java</b><span>Language</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/spring-boot.svg" alt="" width="22" height="22"></i><div><b>Spring Boot</b><span>Backend</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/spring-security.svg" alt="" width="22" height="22"></i><div><b>Spring Security</b><span>Auth</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/postgresql.svg" alt="" width="22" height="22"></i><div><b>PostgreSQL</b><span>Database</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/mysql.svg" alt="" width="22" height="22"></i><div><b>MySQL</b><span>Database</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/flyway.svg" alt="" width="22" height="22"></i><div><b>Flyway</b><span>Migration</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/aws.svg" alt="" width="22" height="22"></i><div><b>AWS</b><span>EC2 · S3 · Lightsail</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/docker.svg" alt="" width="22" height="22"></i><div><b>Docker</b><span>Infra</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/git.svg" alt="" width="22" height="22"></i><div><b>Git &amp; GitHub</b><span>Version Control</span></div></div>
+          <div class="skill"><i class="logo"><img src="assets/icons/claude.svg" alt="" width="22" height="22"></i><div><b>Claude Code</b><span>AI 코딩 에이전트</span></div></div>
+        </div>
+      </section>
+
+      <footer><span>© 2026 김동민</span><span>HTML · CSS · GitHub Pages</span></footer>
+    </main>
+  </div>
+</div>
+<script>
+(function () {
+
+  // 1) hero title: split BACKEND / DEVELOPER into letters that rise one by one
+  var c = 0;
+  document.querySelectorAll('.hero .split').forEach(function (el) {
+    var text = el.textContent; el.textContent = '';
+    el.setAttribute('aria-hidden', 'true');
+    Array.prototype.forEach.call(text, function (ch) {
+      var s = document.createElement('span');
+      s.className = 'ch'; s.textContent = ch; s.style.setProperty('--c', c++);
+      el.appendChild(s);
+    });
+    c += 3; // short pause before the second line
+  });
+
+  // 2) count-up numbers from 0
+  function countUp(delay) {
+    document.querySelectorAll('[data-count]').forEach(function (el) {
+      var to = +el.dataset.count, t0 = null, dur = 1600, id = (el._run = (el._run || 0) + 1);
+      el.textContent = '0';
+      function step(t) {
+        if (el._run !== id) return;
+        if (t0 === null) t0 = t;
+        var k = Math.min(1, (t - t0) / dur), e = 1 - Math.pow(1 - k, 4);
+        el.textContent = Math.round(to * e);
+        if (k < 1) requestAnimationFrame(step);
+      }
+      setTimeout(function () { requestAnimationFrame(step); }, delay);
+    });
+  }
+  countUp(800);
+
+  // 3) project filter
+  var btns = document.querySelectorAll('.filters button');
+  var shots = document.querySelectorAll('.shot');
+  btns.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var f = b.dataset.f;
+      btns.forEach(function (x) { var on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on ? 'true' : 'false'); });
+      document.documentElement.classList.add('replay');
+      shots.forEach(function (s) { s.hidden = f !== 'all' && s.dataset.tags.split(' ').indexOf(f) < 0; s.classList.remove('in'); });
+      void document.body.offsetWidth;
+      document.documentElement.classList.remove('replay');
+      // the cards that stay rise in again, one after another
+      Array.prototype.filter.call(shots, function (s) { return !s.hidden; }).forEach(function (s, i) {
+        s.style.setProperty('--d', (i * 0.12) + 's');
+        requestAnimationFrame(function () { requestAnimationFrame(function () { s.classList.add('in'); }); });
+      });
+    });
+  });
+
+  // 4) stagger + title line indexes
+  document.querySelectorAll('.stagger').forEach(function (box) {
+    Array.prototype.forEach.call(box.children, function (el, i) { el.style.setProperty('--i', Math.min(i, 10)); });
+  });
+  document.querySelectorAll('.big.rv').forEach(function (h) {
+    h.querySelectorAll('.ln > span').forEach(function (s, i) { s.style.setProperty('--l', i); });
+  });
+
+  // 5) scroll reveal — fires once, when the element is ~12% inside the viewport
+  var els = document.querySelectorAll('.reveal, .stagger, .big.rv');
+  if (!('IntersectionObserver' in window)) { els.forEach(function (el) { el.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+  els.forEach(function (el) { io.observe(el); });
+
+  // 6) menu click: replay the animations of the section you jump to
+  function restart(el) { el.style.animation = 'none'; void el.offsetWidth; el.style.animation = ''; }
+  document.querySelectorAll('.nav-pill a[href^="#"], a.tile[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function () {
+      var target = document.querySelector(a.getAttribute('href'));
+      if (!target) return;
+      var box = target.id === 'top' ? document.querySelector('.hero') : target;
+      var list = Array.prototype.slice.call(box.querySelectorAll('.reveal, .stagger, .big.rv'));
+      if (box.matches('.reveal, .stagger, .big.rv')) list.unshift(box);
+      document.documentElement.classList.add('replay');      // snap back without a transition
+      list.forEach(function (el) { el.classList.remove('in'); });
+      if (target.id === 'top') {
+        document.querySelectorAll('.profile, .hero .ch, .hero .lead, .hero .stats, .hero .stats-note').forEach(restart);
+        countUp(800);
+      }
+      void document.body.offsetWidth;
+      document.documentElement.classList.remove('replay');
+      list.forEach(function (el) { io.unobserve(el); io.observe(el); }); // plays again as it comes into view
+    });
+  });
+})();
+</script>
+</body>
+</html>
