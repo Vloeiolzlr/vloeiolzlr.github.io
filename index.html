@@ -17,6 +17,8 @@
 <style>
 /* 레이아웃: 가운데 둥근 메뉴, 왼쪽 따라 내려오는 크림색 프로필 카드, 오른쪽 어두운 본문.
    모션: adinaa.me 방식 — 화면에 들어올 때 짧게 올라오는 리빌, 카드 호버 시 확대+블러+어두운 막+글 상승. */
+@font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Light.subset.woff2") format("woff2"); font-weight: 300; font-style: normal; font-display: swap; }
+@font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Black.subset.woff2") format("woff2"); font-weight: 900; font-style: normal; font-display: swap; }
 @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Regular.subset.woff2") format("woff2"); font-weight: 400; font-style: normal; font-display: swap; }
 @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-Medium.subset.woff2") format("woff2"); font-weight: 500; font-style: normal; font-display: swap; }
 @font-face { font-family: "Pretendard"; src: url("assets/fonts/Pretendard-SemiBold.subset.woff2") format("woff2"); font-weight: 600; font-style: normal; font-display: swap; }
@@ -174,6 +176,13 @@ main { display: grid; gap: 120px; min-width: 0; }
 .below p { color: var(--muted); font-size: 15px; }
 .hint { font-size: 13px; color: var(--dim); }
 
+.logo-screen { position: absolute; inset: 0; display: grid; place-items: center; padding-bottom: 20%; background: radial-gradient(120% 90% at 50% 40%, #13414f 0%, #0e2a33 55%, #0a1d24 100%); }
+.logo-screen svg { width: min(44%, 400px); height: auto; overflow: visible; }
+@media (max-width: 639px) {
+  .shot.main .frame { aspect-ratio: 4 / 3; }
+  .logo-screen { place-items: start center; padding: 15% 0 0; }
+  .logo-screen svg { width: 58%; }
+}
 /* LFT ALL main card: name, line, badges always visible bottom-left */
 .shot.main .shade { background: linear-gradient(180deg, transparent 40%, rgba(8,8,8,.75)); }
 .shot.main .overlay { grid-template-rows: 1fr; align-items: end; }
@@ -353,7 +362,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
           <article class="shot wide main reveal" data-tags="live">
             <div class="frame">
               <div class="screen" style="--tone:#0e2a33;--fg:#7fe3f5">
-                <div class="ph" aria-hidden="true"><i></i><i></i><i></i><span>LFT ALL</span></div>
+                <div class="logo-screen" aria-hidden="true"><svg viewBox="0 0 228 56"><g font-family="Pretendard, 'Pretendard Variable', -apple-system, 'Apple SD Gothic Neo', sans-serif" font-size="56" fill="#f2efea"><text x="0" y="47" font-weight="900" letter-spacing="-2.5">LFT</text><rect x="112" y="8" width="4" height="42" rx="2" fill="#22d3ee"></rect><text x="126" y="47" font-weight="300" letter-spacing="-1.1">ALL</text></g></svg></div>
                 <img src="assets/lftall.png" alt="" loading="lazy" onerror="this.remove()">
               </div>
               <div class="shade"></div>
@@ -372,7 +381,7 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
             <div class="frame">
               <div class="screen" style="--tone:#2b1a12;--fg:#f2683c">
                 <div class="ph" aria-hidden="true"><i></i><i></i><i></i><span>SGEA</span></div>
-                <img src="assets/sgea.png" alt="" loading="lazy" onerror="this.remove()">
+                <img src="assets/sgea.png" alt="" style="object-position:50% 50%" loading="lazy" onerror="this.remove()">
               </div>
               <div class="shade"></div>
               <a class="cover" href="https://sgea.kr" target="_blank" rel="noopener" aria-label="SGEA 사이트 열기"></a>
@@ -390,14 +399,14 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
             <div class="frame">
               <div class="screen" style="--tone:#1c1a2e;--fg:#b9aeff">
                 <div class="ph" aria-hidden="true"><i></i><i></i><i></i><span>달토끼</span></div>
-                <img src="assets/moonrabbit.png" alt="" loading="lazy" onerror="this.remove()">
+                <img src="assets/moonrabbit.png" alt="" style="object-position:50% 45%" loading="lazy" onerror="this.remove()">
               </div>
               <div class="shade"></div>
-              <a class="cover" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="달토끼 GitHub 열기"></a>
+              <a class="cover" href="https://github.com/DMU-MoonRabbit" target="_blank" rel="noopener" aria-label="달토끼 GitHub 열기"></a>
               <div class="overlay">
                 <p class="tagline">고민 상담 커뮤니티</p>
                 <div class="foot">
-                  <div class="badges"><span class="badge">졸업작품</span><a class="ico" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="달토끼 GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div>
+                  <div class="badges"><span class="badge">졸업작품</span><a class="ico" href="https://github.com/DMU-MoonRabbit" target="_blank" rel="noopener" aria-label="달토끼 GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div>
                 </div>
               </div>
             </div>
@@ -408,14 +417,14 @@ footer { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12
             <div class="frame">
               <div class="screen" style="--tone:#1e2a12;--fg:#c6f24e">
                 <div class="ph" aria-hidden="true"><i></i><i></i><i></i><span>책이랑</span></div>
-                <img src="assets/chaekirang.png" alt="" loading="lazy" onerror="this.remove()">
+                <img src="assets/chaekirang.png" alt="" style="object-position:50% 50%" loading="lazy" onerror="this.remove()">
               </div>
               <div class="shade"></div>
-              <a class="cover" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="책이랑 GitHub 열기"></a>
+              <a class="cover" href="https://github.com/Vloeiolzlr/ChaekIRang" target="_blank" rel="noopener" aria-label="책이랑 GitHub 열기"></a>
               <div class="overlay">
                 <p class="tagline">독서 토론 플랫폼</p>
                 <div class="foot">
-                  <div class="badges"><span class="badge">TEAM</span><a class="ico" href="https://github.com/Vloeiolzlr" target="_blank" rel="noopener" aria-label="책이랑 GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div>
+                  <div class="badges"><span class="badge">TEAM</span><a class="ico" href="https://github.com/Vloeiolzlr/ChaekIRang" target="_blank" rel="noopener" aria-label="책이랑 GitHub"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></div>
                 </div>
               </div>
             </div>
